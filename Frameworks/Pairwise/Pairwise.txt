@@ -1,0 +1,63 @@
+﻿Pairwise Testing - Combinatorial Test Case Generation
+
+Pairwise (a.k.a. all-pairs) testing is an effective test case generation technique 
+that is based on the observation that most faults are caused by interactions of at 
+most two factors. Pairwise-generated test suites cover all combinations of two therefore 
+are much smaller than exhaustive ones yet still very effective in finding defects.
+
+Installing
+	gem install pairwise
+
+Usage
+
+	Pairwise and Ruby
+
+		Pairwise.combinations will return an array of input combinations.
+
+		Here’s an example using pairwise with Rspec:
+
+		require 'rubygems'
+		require 'pairwise'
+
+		describe “something” do Pairwise.combinations([1,2], [1,2], [2,3]).each do |(event_id, new_event_id, media_id)| it “should do something with these input values” do … end end end
+
+	Pairwise and Cucumber
+	
+	Scenario Outline: Visiting events with another events media
+		Given I have a <event without media>
+		And I have a <media item> attached to <event with media>
+		When I go to the <media item> page for the <event without media>
+		Then I should be redirected
+		And I should see the <media item> in the <event with media>
+	Examples:
+		|media item|event without media|event with an media|
+
+		Create a yaml file with your inputs:
+
+		event with image: [Football, Basketball, Soccer]
+		event without image: [Football, Basketball, Soccer]
+		media: [Image, Video, Music]
+
+		If you want to force the ordering of your inputs:
+
+		- event with image: [Football, Basketball, Soccer]
+		- event without image: [Football, Basketball, Soccer]
+		- media: [Image, Video, Music]
+
+		Run pairwise passing the input file
+
+		$ pairwise inputs.yml
+
+		This will output a table ready to be used in your Cucumber features.
+
+
+		| media | event without image | event with image |
+		| Image | Football            | Football         |
+		| Image | Basketball          | Basketball       |
+		| Image | Soccer              | Soccer           |
+		| Video | Football            | Soccer           |
+		| Video | Basketball          | Football         |
+		| Video | Soccer              | Basketball       |
+		| Music | Football            | Basketball       |
+		| Music | Basketball          | Soccer           |
+		| Music | Soccer              | Football         |

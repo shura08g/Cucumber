@@ -1,0 +1,39 @@
+Hydra
+
+This gem provides a distibution-like snapshot of all dependencies within the core Hydra technology stack. The components of the stack are as follows:
+
+    rubydora - a REST client for Fedora Commons Repository
+    solrizer - translates indexing directives into Solr field names
+    om - a library for defining templates for xml metadata formats
+    nom-xml - an alternative to om
+    active-fedora - an ORM for Fedora and Solr
+    blacklight - web front end for Solr document discovery (search)
+    hydra-head - integration between Blacklight and ActiveFedora. Provides access controls and gated searching.
+    jettywrapper - Utilities for starting up a jetty server with Solr and Fedora useful in development and testing.
+
+Additionally, versions are locked to the following transitive dependencies, as they are critial to the stack: * Nokogiri * Ruby on Rails * RSolr
+
+Installation
+
+You may want to consider the Dive Into Hydra Tutorial. Or perhaps you want a little more self-directed. If so:
+
+Add this line to your application's Gemfile:
+
+	gem 'hydra'
+
+And then execute:
+
+	$ bundle
+
+Then run:
+
+	$ rails g hydra:install
+
+Acknowledgements
+
+The initial insights and ideas behind producting a "distro-like" gem to reflect a particular known-good, point-in-time state of the Hydra technology stack resulted from a series of community discussions online, in e-mail, and in person during the period from December 2012 through June 2013. Huge thanks are owed to Jeremy Friesen (Notre Dame), Drew Myers (WGBH), Justin Coyne (Data Curation Experts), and Mark Bussey (Data Curation Experts) for activating on these ideas and implementing this gem.
+
+A giant thank you is also owed to Nick Gauthier for offering up the Hydra gem name.
+ngauthier-hydra
+
+If you are looking for the previous hydra gem, a distributed testing framework, please visit https://github.com/ngauthier/hydra. If you need to previous hydra gem, you can use gem ngauthier-hydra.

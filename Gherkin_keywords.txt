@@ -1,0 +1,68 @@
+http://cukes.info/api/cucumber/ruby/yardoc/frames.html#!Cucumber.html - Class List
+http://rubydoc.info/github/rspec/rspec-expectations/frames/RSpec/Matchers
+
+• Feature - This is the description of the feature, which can span multiple lines
+• Background - allows you to specify a set of steps that are common to every 
+  scenario in the file
+• Scenario - To actually express the behavior we want
+• Given - we use Given to set up the context where the scenario happens
+• When - to interact with the system somehow
+• Then - to check that the outcome of that interaction was what we expected.
+• And - the lines in a scenario is known as a step
+• But - the lines in a scenario is known as a step
+• * - (an asterisk) instead Given, When, Then, And, But
+• Scenario Outline
+• Examples
+
+Data tables - just describe a lump of data to attach to a single step of a single scenario
+
+cucumber test.feature --dry-run - tells Cucumber to parse the file without executing
+cucumber --expand  - print each example in a scenario outline as though it were a scenario
+cucumber --i18n help - the list of all valid languages with this command
+# language: uk
+cucumber --i18n uk - Ukrainian
+
+Given /I have deposited \$(100|250) in my Account/ do |amount| - This step definition will now 
+match a step with either of the two values 100 OR 250 in it
+When /I (?:visit|go to) the homepage/ DO - (?: - noncapturing group - meaning Cucumber won’t
+ pass it as an argument to our block.)
+
+Принимать аргумент только числа
+Given /I have deposited \$([0123456789]*) in my Account/ do |amount|
+Given /I have deposited \$([0-9]*) in my Account/ do |amount|
+Given /I have deposited \$(\d*) in my Account/ do |amount|
+Given /I have deposited \$(\d+) in my Account/ do |amount| (хотя б один символ должен быть)
+
+Given /I have deposited \$(\d+) in my (\w+) Account/ do |amount, account_type|
+
+Given /I have (\d+) cucumbers? in my basket/ do |number|  - ('?' - we don’t care whether
+ the word is singular or plural)
+
+Useful Shorthand Character Classes:
+\d - stands for digit, or [0-9].
+
+\w - stands for word character, specifically [A-Za-z0-9_]. Notice that underscores and
+digits are included but not hyphens.
+
+\s - stands for whitespace character, specifically [ \t\r\n]. That means a space, a tab,
+or a line break.
+
+\b - stands for word boundary, which is a lot like \s but actually means the opposite
+of \w. Anything that is not a word character is a word boundary.
+
+You can also negate shorthand character classes by capitalizing them, so for example,
+\D means any character except a digit.
+
+steps start with a ^ and end with a $ - anchor
+
+cucumber --strict - will return an exit code of 1 (to
+indicate an error) if there are any undefined or pending steps.
+
+cucumber features/reading_reports/widgets_report.feature -r feature - 
+to require the step definition code from the root
+features folder
+
+Using ||= ensures that the new Class will be created only once and then
+stored in an instance variable (@my_account ||= Account.new)
+
+I:\prog\Cucumber\ATM2\features\support>bundle exec ruby i:/prog/cucumber/ATM2/lib/nice_bank.rb
